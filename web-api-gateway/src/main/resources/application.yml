@@ -1,0 +1,17 @@
+server:
+  port: 9999
+#配置方式
+spring:
+  cloud:
+    gateway:
+      routes:
+        # 路由的ID
+        - id: default-route
+          # uri：匹配路由的转发地址
+          uri: http://127.0.0.1:8886/
+          predicates:
+            - Method=GET
+            - Path=/api/**
+          # 内置过滤器 去掉路径的前缀的位数
+          filters:
+            - StripPrefix=0
